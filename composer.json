@@ -1,0 +1,23 @@
+{
+    "name": "kawanamiyuu/php-oauth",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yuu Kawanami",
+            "email": "yuu.kawanami@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "lusitanian/oauth": "~0.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kawanamiyuu\\OAuth\\": "src/"
+        }
+    }
+}
