@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuth;
+namespace Kawanamiyuu\OAuthClient;
 
 use OAuth\Common\Service\ServiceInterface;
 

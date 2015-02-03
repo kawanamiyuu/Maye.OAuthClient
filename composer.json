@@ -1,6 +1,10 @@
 {
-    "name": "kawanamiyuu/php-oauth",
-    "license": "MIT",
+    "name": "kawanamiyuu/oauth-client",
+	"description": "PHP OAuth Client",
+	"keywords": [
+		"oauth"
+	],
+	"license": "MIT",
     "authors": [
         {
             "name": "Yuu Kawanami",
@@ -9,7 +13,8 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {
+	"require": {
+		"php": ">=5.5.0",
         "lusitanian/oauth": "~0.3"
     },
     "require-dev": {
@@ -17,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Kawanamiyuu\\OAuth\\": "src/"
+            "Kawanamiyuu\\OAuthClient\\": "src/"
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuth;
+namespace Kawanamiyuu\OAuthClient;
 
 use OAuth\Common\Consumer\Credentials;
 use OAuth\Common\Http\Uri\UriFactory;

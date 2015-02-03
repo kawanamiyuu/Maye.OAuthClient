@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuth;
+namespace Kawanamiyuu\OAuthClient;
 
 use OAuth\OAuth2\Service\ServiceInterface;
 use OAuth\OAuth2\Token\StdOAuth2Token;
