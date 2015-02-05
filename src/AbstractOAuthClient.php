@@ -38,7 +38,15 @@ abstract class AbstractOAuthClient implements OAuthClientInterface
      */
     public function api($method, $path, array $params = [], array $extraHeaders = [])
     {
-        if (strtolower($method) === ' post') {
+        $method = strtolower($method);
+
+        if ($method === 'put' || $method === 'delete') {
+            $extraHeaders = array_change_key_case($extraHeaders, CASE_LOWER);
+            $extraHeaders['x-http-method-override'] = $method;
+            $method = 'post';
+        }
+
+        if ($method === ' post') {
             return $this->service->request($path, $method, $params, $extraHeaders);
         }
 
