@@ -4,7 +4,7 @@ namespace Kawanamiyuu\OAuthClient;
 
 class OAuth1TestClient extends OAuth1Client
 {
-    public function getRequestToken()
+    protected function getRequestToken()
     {
         return 'RequestToken';
     }
@@ -21,8 +21,8 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->client = new OAuth1TestClient(
             'twitter',
-            '{C_KEY}',
-            '{C_SECRET}',
+            'ConsumerKey',
+            'ConsumerSecret',
             '/oauth/twitter/callback',
             ['force_login' => 'true']
         );
@@ -34,7 +34,14 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
         $this->client->authorize();
         $result = ob_get_clean();
 
-        $expected = 'Location: https://api.twitter.com/oauth/authenticate?oauth_token=RequestToken&force_login=true';
-        $this->assertEquals($expected, $result);
+        list(, $url) = explode(':', $result, 2);
+        parse_str(parse_url(trim($url))['query'], $queries);
+
+        $this->assertStringStartsWith('Location: https://api.twitter.com/oauth/authenticate?', $result);
+
+        $this->assertEquals([
+            'oauth_token' => 'RequestToken',
+            'force_login' => 'true'
+        ], $queries);
     }
 } 
