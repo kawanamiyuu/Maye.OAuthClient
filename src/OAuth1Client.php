@@ -41,7 +41,7 @@ class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
     /**
      * {@inheritdoc}
      */
-    protected function createAuthorizationUrl()
+    protected function getAuthorizationUrl()
     {
         $requestToken = $this->getRequestToken();
 

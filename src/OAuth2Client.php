@@ -53,7 +53,7 @@ class OAuth2Client extends AbstractOAuthClient implements OAuth2ClientInterface
     /**
      * {@inheritdoc}
      */
-    protected function createAuthorizationUrl()
+    protected function getAuthorizationUrl()
     {
         return $this->service->getAuthorizationUri($this->extraParams);
     }

@@ -12,18 +12,18 @@ abstract class AbstractOAuthClient implements OAuthClientInterface
     protected $service;
 
     /**
-     * Create an Authorization URL
+     * Get an Authorization URL
      *
      * @return string
      */
-    abstract protected function createAuthorizationUrl();
+    abstract protected function getAuthorizationUrl();
 
     /**
      * {@inheritdoc}
      */
     public function authorize()
     {
-        header('Location: ' . $this->createAuthorizationUrl());
+        header('Location: ' . $this->getAuthorizationUrl());
     }
 
     /**
