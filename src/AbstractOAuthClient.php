@@ -27,31 +27,13 @@ abstract class AbstractOAuthClient implements OAuthClientInterface
     }
 
     /**
-     * Send an API Request
-     *
-     * @param string $method HTTP method
-     * @param string $path   Resource path
-     * @param array  $params Query parameters (GET) or Request body parameters (POST)
-     * @param array  $extraHeaders
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function api($method, $path, array $params = [], array $extraHeaders = [])
+    public function api($method, $path, array $queries = [], array $requestBody = [], array $extraHeaders = [])
     {
-        $method = strtolower($method);
+        $path .= empty($queries) ? '' : '?' . http_build_query($queries);
+        $requestBody = empty($requestBody) ? null : $requestBody;
 
-        if ($method === 'put' || $method === 'delete') {
-            $extraHeaders = array_change_key_case($extraHeaders, CASE_LOWER);
-            $extraHeaders['x-http-method-override'] = $method;
-            $method = 'post';
-        }
-
-        if ($method === ' post') {
-            return $this->service->request($path, $method, $params, $extraHeaders);
-        }
-
-        $path .= empty($params) ? '' : '?' . http_build_query($params);
-        return $this->service->request($path, $method, null, $extraHeaders);
-
+        return $this->service->request($path, $method, $requestBody, $extraHeaders);
     }
 }

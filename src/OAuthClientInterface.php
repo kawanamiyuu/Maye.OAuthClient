@@ -16,10 +16,11 @@ interface OAuthClientInterface
      *
      * @param string $method       HTTP method
      * @param string $path         Resource path
-     * @param array  $params       Query parameters (GET) or Request body parameters (POST)
+     * @param array  $queries      Query string parameters
+     * @param array  $requestBody  Request body parameters
      * @param array  $extraHeaders Extra headers
      *
      * @return string
      */
-    public function api($method, $path, array $params = [], array $extraHeaders = []);
+    public function api($method, $path, array $queries = [], array $requestBody = [], array $extraHeaders = []);
 }
