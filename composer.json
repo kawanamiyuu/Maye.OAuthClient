@@ -1,10 +1,10 @@
 {
-    "name": "kawanamiyuu/oauth-client",
-	"description": "PHP OAuth Client",
-	"keywords": [
-		"oauth"
-	],
-	"license": "MIT",
+    "name": "maye/oauth-client",
+    "description": "PHP OAuth Client based on lusitanian/oauth",
+    "keywords": [
+        "oauth"
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Yuu Kawanami",
@@ -13,8 +13,8 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-	"require": {
-		"php": ">=5.5.0",
+    "require": {
+        "php": ">=5.5.0",
         "lusitanian/oauth": "~0.3"
     },
     "require-dev": {
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Kawanamiyuu\\OAuthClient\\": "src/"
+            "Maye\\OAuthClient\\": "src/"
         }
     }
 }

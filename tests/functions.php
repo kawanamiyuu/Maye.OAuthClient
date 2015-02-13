@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuthClient;
+namespace Maye\OAuthClient;
 
 // ---------------------------- //
 // Override build-in functions  //

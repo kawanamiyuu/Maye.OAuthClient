@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuthClient;
+namespace Maye\OAuthClient;
 
 use OAuth\Common\Consumer\Credentials;
 use OAuth\Common\Http\Uri\UriFactory;

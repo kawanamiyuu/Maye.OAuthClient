@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuthClient;
+namespace Maye\OAuthClient;
 
 use OAuth\OAuth2\Service\Exception\MissingRefreshTokenException;
 use OAuth\OAuth2\Token\TokenInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuthClient;
+namespace Maye\OAuthClient;
 
 use OAuth\OAuth1\Service\AbstractService as AbstractOAuth1Service;
 use OAuth\OAuth2\Service\AbstractService as AbstractOAuth2Service;

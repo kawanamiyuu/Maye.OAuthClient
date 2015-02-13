@@ -1,6 +1,6 @@
 <?php
 
-namespace Kawanamiyuu\OAuthClient;
+namespace Maye\OAuthClient;
 
 use OAuth\OAuth1\Service\ServiceInterface;
 use OAuth\OAuth1\Token\TokenInterface;
