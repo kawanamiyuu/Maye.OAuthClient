@@ -1,6 +1,8 @@
 Maye.OAuthClient
 ====
 
+[![Build Status](https://travis-ci.org/kawanamiyuu/Maye.OAuthClient.svg?branch=master)](https://travis-ci.org/kawanamiyuu/Maye.OAuthClient)
+
 Maye.OAuthClient is the OAuth Client library which has simple interface to support [OAuth 1](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/OAuth1/Service) and [OAuth 2](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/OAuth2/Service), based on [lusitanian/oauth (PHPoAuthLib)](https://github.com/Lusitanian/PHPoAuthLib).
 
 ## e.g. Twitter (OAuth1)
