@@ -49,7 +49,7 @@ $userId     = $token->getExtraParams()['user_id'];
 $screenName = $token->getExtraParams()['screen_name'];
 
 // gets the authorized user info
-$result = $client->api('users/show.json', ['user_id' => $userId]);
+$result = $client->api('get', 'users/show.json', ['user_id' => $userId]);
 $result = json_decode($result);
 
 $name = $result->name;
@@ -97,7 +97,7 @@ $accessToken  = $token->getAccessToken();
 $refreshToken = $token->getRefreshToken();
 
 // gets the authorized user info
-$result = $client->api('/me');
+$result = $client->api('get', '/me');
 $result = json_decode($result);
 
 $id = $result->id;
