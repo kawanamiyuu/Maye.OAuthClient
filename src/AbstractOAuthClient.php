@@ -36,4 +36,12 @@ abstract class AbstractOAuthClient implements OAuthClientInterface
 
         return $this->service->request($path, $method, $requestBody, $extraHeaders);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getServiceName()
+    {
+        return $this->service->service();
+    }
 }

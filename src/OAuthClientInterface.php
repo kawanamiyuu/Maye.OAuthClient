@@ -23,4 +23,11 @@ interface OAuthClientInterface
      * @return string
      */
     public function api($method, $path, array $queries = [], array $requestBody = [], array $extraHeaders = []);
+
+    /**
+     * Get the service name
+     *
+     * @return string
+     */
+    public function getServiceName();
 }
