@@ -11,11 +11,11 @@ use OAuth\ServiceFactory as OAuthServiceFactory;
 class ServiceFactory
 {
     /**
-     * @param string                $serviceName       Service Name
-     * @param string                $consumerKey       Consumer Key
-     * @param string                $consumerSecret    Consumer Secret
-     * @param string                $callbackUrlPath   Callback URL Path
-     * @param array                 $scopes            Scopes (for OAuth2)
+     * @param string $serviceName     Service Name
+     * @param string $consumerKey     Consumer Key
+     * @param string $consumerSecret  Consumer Secret
+     * @param string $callbackUrlPath Callback URL Path
+     * @param array  $scopes          Scopes (for OAuth2)
      *
      * @return ServiceInterface
      */
@@ -25,10 +25,10 @@ class ServiceFactory
         $consumerSecret,
         $callbackUrlPath,
         array $scopes = []
-    )
-    {
+    ) {
         $callbackUrl = $this->createCallbackURL($callbackUrlPath);
         $credentials = new Credentials($consumerKey, $consumerSecret, $callbackUrl);
+
         return (new OAuthServiceFactory)->createService($serviceName, $credentials, new Session, $scopes);
     }
 
@@ -42,6 +42,7 @@ class ServiceFactory
         $uri = (new UriFactory)->createFromSuperGlobalArray($_SERVER);
         $uri->setPath($path);
         $uri->setQuery('');
+
         return $uri->getAbsoluteUri();
     }
 }
