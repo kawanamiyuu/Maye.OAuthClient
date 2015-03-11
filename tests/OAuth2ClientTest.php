@@ -43,4 +43,4 @@ class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
             'response_type' => 'code'
         ], $queries);
     }
-} 
+}

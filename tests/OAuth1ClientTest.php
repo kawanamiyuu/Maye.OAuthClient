@@ -44,4 +44,4 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
             'force_login' => 'true'
         ], $queries);
     }
-} 
+}

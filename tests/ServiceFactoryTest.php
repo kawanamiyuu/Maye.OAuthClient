@@ -3,8 +3,8 @@
 namespace Maye\OAuthClient;
 
 use OAuth\OAuth1\Service\AbstractService as AbstractOAuth1Service;
-use OAuth\OAuth2\Service\AbstractService as AbstractOAuth2Service;
 use OAuth\OAuth1\Service\Twitter;
+use OAuth\OAuth2\Service\AbstractService as AbstractOAuth2Service;
 use OAuth\OAuth2\Service\Facebook;
 
 class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
