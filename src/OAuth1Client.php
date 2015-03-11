@@ -60,6 +60,7 @@ class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
     {
         /** @var TokenInterface $token */
         $token = $this->service->requestRequestToken();
+
         return $token->getRequestToken();
     }
 }
