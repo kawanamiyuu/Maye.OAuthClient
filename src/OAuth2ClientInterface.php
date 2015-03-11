@@ -27,4 +27,4 @@ interface OAuth2ClientInterface extends OAuthClientInterface
      * @throws MissingRefreshTokenException
      */
     public function refreshAccessToken($refreshToken);
-} 
+}
