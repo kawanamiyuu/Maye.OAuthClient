@@ -15,4 +15,14 @@ interface OAuth1ClientInterface extends OAuthClientInterface
      * @return TokenInterface
      */
     public function requestAccessToken($token, $verifier);
+
+    /**
+     * Set Access token and Token secret
+     *
+     * @param string $accessToken Access token
+     * @param string $tokenSecret Token secret
+     *
+     * @return self
+     */
+    public function setAccessToken($accessToken, $tokenSecret);
 }
