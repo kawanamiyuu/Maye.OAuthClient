@@ -2,6 +2,7 @@
 
 namespace Maye\OAuthClient;
 
+use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\OAuth2\Service\ServiceInterface;
 use OAuth\OAuth2\Token\StdOAuth2Token;
 
@@ -48,6 +49,23 @@ class OAuth2Client extends AbstractOAuthClient implements OAuth2ClientInterface
         $token->setRefreshToken($refreshToken);
 
         return $this->service->refreshAccessToken($token);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAccessToken($accessToken)
+    {
+        $this->clearCachedAccessToken();
+
+        $token = new StdOAuth2Token;
+        $token->setAccessToken($accessToken);
+
+        /** @var TokenStorageInterface $storage */
+        $storage = $this->service->getStorage();
+        $storage->storeAccessToken($this->getServiceName(), $token);
+
+        return $this;
     }
 
     /**
