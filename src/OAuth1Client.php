@@ -2,7 +2,9 @@
 
 namespace Maye\OAuthClient;
 
+use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\OAuth1\Service\ServiceInterface;
+use OAuth\OAuth1\Token\StdOAuth1Token;
 use OAuth\OAuth1\Token\TokenInterface;
 
 class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
@@ -36,6 +38,24 @@ class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
     public function requestAccessToken($token, $verifier)
     {
         return $this->service->requestAccessToken($token, $verifier, null);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAccessToken($accessToken, $tokenSecret)
+    {
+        $this->clearCachedAccessToken();
+
+        $token = new StdOAuth1Token;
+        $token->setAccessToken($accessToken);
+        $token->setAccessTokenSecret($tokenSecret);
+
+        /** @var TokenStorageInterface $storage */
+        $storage = $this->service->getStorage();
+        $storage->storeAccessToken($this->getServiceName(), $token);
+
+        return $this;
     }
 
     /**
