@@ -3,6 +3,7 @@
 namespace Maye\OAuthClient;
 
 use OAuth\Common\Service\ServiceInterface;
+use OAuth\Common\Storage\TokenStorageInterface;
 
 abstract class AbstractOAuthClient implements OAuthClientInterface
 {
@@ -23,6 +24,8 @@ abstract class AbstractOAuthClient implements OAuthClientInterface
      */
     public function authorize()
     {
+        $this->clearCachedAccessToken();
+
         header('Location: ' . $this->getAuthorizationUrl());
     }
 
@@ -43,5 +46,19 @@ abstract class AbstractOAuthClient implements OAuthClientInterface
     public function getServiceName()
     {
         return $this->service->service();
+    }
+
+    /**
+     * clear Cached Access token
+     *
+     * @return self
+     */
+    protected function clearCachedAccessToken()
+    {
+        /** @var TokenStorageInterface $storage */
+        $storage = $this->service->getStorage();
+        $storage->clearToken($this->getServiceName());
+
+        return $this;
     }
 }

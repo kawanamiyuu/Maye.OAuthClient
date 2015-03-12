@@ -2,6 +2,9 @@
 
 namespace Maye\OAuthClient;
 
+use OAuth\Common\Storage\Session;
+use OAuth\OAuth1\Token\StdOAuth1Token;
+
 class OAuth1TestClient extends OAuth1Client
 {
     protected function getRequestToken()
@@ -43,5 +46,16 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
             'oauth_token' => 'RequestToken',
             'force_login' => 'true'
         ], $queries);
+    }
+
+    public function testSetAccessToken()
+    {
+        $this->client->setAccessToken('AccessToken', 'TokenSecret');
+
+        /** @var StdOAuth1Token $token */
+        $token = (new Session)->retrieveAccessToken($this->client->getServiceName());
+
+        $this->assertEquals('AccessToken', $token->getAccessToken());
+        $this->assertEquals('TokenSecret', $token->getAccessTokenSecret());
     }
 }
