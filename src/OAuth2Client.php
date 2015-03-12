@@ -56,12 +56,14 @@ class OAuth2Client extends AbstractOAuthClient implements OAuth2ClientInterface
      */
     public function setAccessToken($accessToken)
     {
+        $this->clearCachedAccessToken();
+
         $token = new StdOAuth2Token;
         $token->setAccessToken($accessToken);
 
         /** @var TokenStorageInterface $storage */
         $storage = $this->service->getStorage();
-        $storage->storeAccessToken($this->service->service(), $token);
+        $storage->storeAccessToken($this->getServiceName(), $token);
 
         return $this;
     }

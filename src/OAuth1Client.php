@@ -45,13 +45,15 @@ class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
      */
     public function setAccessToken($accessToken, $tokenSecret)
     {
+        $this->clearCachedAccessToken();
+
         $token = new StdOAuth1Token;
         $token->setAccessToken($accessToken);
         $token->setAccessTokenSecret($tokenSecret);
 
         /** @var TokenStorageInterface $storage */
         $storage = $this->service->getStorage();
-        $storage->storeAccessToken($this->service->service(), $token);
+        $storage->storeAccessToken($this->getServiceName(), $token);
 
         return $this;
     }
