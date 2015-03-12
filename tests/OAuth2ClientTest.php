@@ -2,7 +2,9 @@
 
 namespace Maye\OAuthClient;
 
+use OAuth\Common\Storage\Session;
 use OAuth\OAuth2\Service\Facebook;
+use OAuth\OAuth2\Token\StdOAuth2Token;
 
 class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,5 +44,15 @@ class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
             'type'          => 'web_server',
             'response_type' => 'code'
         ], $queries);
+    }
+
+    public function testSetAccessToken()
+    {
+        $this->client->setAccessToken('AccessToken');
+
+        /** @var StdOAuth2Token $token */
+        $token = (new Session)->retrieveAccessToken($this->client->getServiceName());
+
+        $this->assertEquals('AccessToken', $token->getAccessToken());
     }
 }
