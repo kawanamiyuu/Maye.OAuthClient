@@ -6,6 +6,7 @@ use OAuth\Common\Consumer\Credentials;
 use OAuth\Common\Http\Uri\UriFactory;
 use OAuth\Common\Service\ServiceInterface;
 use OAuth\Common\Storage\Session;
+use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\ServiceFactory as OAuthServiceFactory;
 
 class ServiceFactory
@@ -16,6 +17,7 @@ class ServiceFactory
      * @param string $consumerSecret  Consumer Secret
      * @param string $callbackUrlPath Callback URL Path
      * @param array  $scopes          Scopes (for OAuth2)
+     * @param TokenStorageInterface $storage Token Storage
      *
      * @return ServiceInterface
      */
@@ -24,12 +26,14 @@ class ServiceFactory
         $consumerKey,
         $consumerSecret,
         $callbackUrlPath,
-        array $scopes = []
+        array $scopes = [],
+        TokenStorageInterface $storage = null
     ) {
         $callbackUrl = $this->createCallbackURL($callbackUrlPath);
         $credentials = new Credentials($consumerKey, $consumerSecret, $callbackUrl);
+        $storage = $storage ?: new Session;
 
-        return (new OAuthServiceFactory)->createService($serviceName, $credentials, new Session, $scopes);
+        return (new OAuthServiceFactory)->createService($serviceName, $credentials, $storage, $scopes);
     }
 
     /**
