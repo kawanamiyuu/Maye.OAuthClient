@@ -2,7 +2,9 @@
 
 namespace Maye\OAuthClient;
 
+use OAuth\Common\Storage\Memory;
 use OAuth\Common\Storage\Session;
+use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\OAuth1\Token\StdOAuth1Token;
 
 class OAuth1TestClient extends OAuth1Client
@@ -16,25 +18,22 @@ class OAuth1TestClient extends OAuth1Client
 class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var OAuth1ClientInterface
+     * @runInSeparateProcess
      */
-    private $client;
-
-    public function setUp()
+    public function testDefaultStorage()
     {
-        $this->client = new OAuth1TestClient(
-            'twitter',
-            'ConsumerKey',
-            'ConsumerSecret',
-            '/oauth/twitter/callback',
-            ['force_login' => 'true']
-        );
+        $client = $this->getClient(null);
+        $storage = $this->getStorage($client);
+
+        $this->assertInstanceOf(Session::class, $storage);
     }
 
     public function testAuthorize()
     {
+        $client = $this->getClient(new Memory);
+
         ob_start();
-        $this->client->authorize();
+        $client->authorize();
         $result = ob_get_clean();
 
         list(, $url) = explode(':', $result, 2);
@@ -50,12 +49,45 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSetAccessToken()
     {
-        $this->client->setAccessToken('AccessToken', 'TokenSecret');
+        $client = $this->getClient(new Memory);
+        $storage = $this->getStorage($client);
+
+        $client->setAccessToken('AccessToken', 'TokenSecret');
 
         /** @var StdOAuth1Token $token */
-        $token = (new Session)->retrieveAccessToken($this->client->getServiceName());
+        $token = $storage->retrieveAccessToken($client->getServiceName());
 
         $this->assertEquals('AccessToken', $token->getAccessToken());
         $this->assertEquals('TokenSecret', $token->getAccessTokenSecret());
+    }
+
+    /**
+     * @param TokenStorageInterface $storage
+     *
+     * @return OAuth1ClientInterface
+     */
+    private function getClient(TokenStorageInterface $storage = null) {
+        return new OAuth1TestClient(
+            'twitter',
+            'ConsumerKey',
+            'ConsumerSecret',
+            '/oauth/twitter/callback',
+            ['force_login' => 'true'],
+            $storage
+        );
+    }
+
+    /**
+     * @param OAuthClientInterface $client
+     *
+     * @return TokenStorageInterface
+     */
+    private function getStorage(OAuthClientInterface $client) {
+        $clazz = new \ReflectionClass($client);
+        $prop = $clazz->getProperty('service');
+        $prop->setAccessible(true);
+        $service = $prop->getValue($client);
+
+        return $service->getStorage();
     }
 }

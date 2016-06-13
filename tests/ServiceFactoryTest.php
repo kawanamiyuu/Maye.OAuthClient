@@ -2,6 +2,7 @@
 
 namespace Maye\OAuthClient;
 
+use OAuth\Common\Storage\Session;
 use OAuth\OAuth1\Service\AbstractService as AbstractOAuth1Service;
 use OAuth\OAuth1\Service\Twitter;
 use OAuth\OAuth2\Service\AbstractService as AbstractOAuth2Service;
@@ -9,6 +10,9 @@ use OAuth\OAuth2\Service\Facebook;
 
 class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testCreateOAuth1Service()
     {
         $service = (new ServiceFactory)->createService(
@@ -20,8 +24,12 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(AbstractOAuth1Service::class, $service);
         $this->assertInstanceOf(Twitter::class, $service);
+        $this->assertInstanceOf(Session::class, $service->getStorage());
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testCreateOAuth2Service()
     {
         $service = (new ServiceFactory)->createService(
@@ -34,6 +42,7 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(AbstractOAuth2Service::class, $service);
         $this->assertInstanceOf(Facebook::class, $service);
+        $this->assertInstanceOf(Session::class, $service->getStorage());
     }
 
     public function testCreateCallbackURL()
