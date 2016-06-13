@@ -17,6 +17,9 @@ class OAuth1TestClient extends OAuth1Client
 
 class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testDefaultStorage()
     {
         $client = $this->getClient(null);

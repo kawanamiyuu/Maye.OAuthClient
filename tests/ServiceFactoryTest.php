@@ -10,6 +10,9 @@ use OAuth\OAuth2\Service\Facebook;
 
 class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testCreateOAuth1Service()
     {
         $service = (new ServiceFactory)->createService(
@@ -24,6 +27,9 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Session::class, $service->getStorage());
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testCreateOAuth2Service()
     {
         $service = (new ServiceFactory)->createService(

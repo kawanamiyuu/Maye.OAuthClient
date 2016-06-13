@@ -10,6 +10,9 @@ use OAuth\OAuth2\Token\StdOAuth2Token;
 
 class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testDefaultStorage()
     {
         $client = $this->getClient(null);
