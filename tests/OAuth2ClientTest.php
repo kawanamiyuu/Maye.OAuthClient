@@ -31,14 +31,13 @@ class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertStringStartsWith('Location: https://www.facebook.com/dialog/oauth?', $result);
 
-        $this->assertEquals([
-            'client_id'     => 'ConsumerKey',
-            'redirect_uri'  => 'http://example.com/oauth/facebook/callback',
-            'scope'         => 'read_stream publish_actions',
-            'auth_type'     => 'reauthenticate',
-            'type'          => 'web_server',
-            'response_type' => 'code'
-        ], $queries);
+        $this->assertEquals('ConsumerKey', $queries['client_id']);
+        $this->assertEquals('http://example.com/oauth/facebook/callback', $queries['redirect_uri']);
+        $this->assertEquals('read_stream,publish_actions', $queries['scope']);
+        $this->assertEquals('reauthenticate', $queries['auth_type']);
+        $this->assertEquals('web_server', $queries['type']);
+        $this->assertEquals('code', $queries['response_type']);
+        $this->assertNotEmpty($queries['state']);
     }
 
     public function testSetAccessToken()
