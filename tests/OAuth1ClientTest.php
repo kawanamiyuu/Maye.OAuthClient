@@ -7,14 +7,6 @@ use OAuth\Common\Storage\Session;
 use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\OAuth1\Token\StdOAuth1Token;
 
-class OAuth1TestClient extends OAuth1Client
-{
-    protected function getRequestToken()
-    {
-        return 'RequestToken';
-    }
-}
-
 class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**

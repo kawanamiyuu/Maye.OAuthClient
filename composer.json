@@ -28,6 +28,11 @@
             "Maye\\OAuthClient\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Maye\\OAuthClient\\": "tests/"
+        }
+    },
     "scripts": {
         "test": [
             "phpmd src text ./phpmd.xml",
