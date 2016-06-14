@@ -20,11 +20,11 @@ class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Session::class, $storage);
     }
-    
+
     public function testAuthorize()
     {
         $client = $this->getClient(new Memory);
-        
+
         ob_start();
         $client->authorize();
         $result = ob_get_clean();
@@ -61,7 +61,8 @@ class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return OAuth2ClientInterface
      */
-    private function getClient(TokenStorageInterface $storage = null) {
+    private function getClient(TokenStorageInterface $storage = null)
+    {
         return new OAuth2Client(
             'facebook',
             'ConsumerKey',
@@ -78,7 +79,8 @@ class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return TokenStorageInterface
      */
-    private function getStorage(OAuthClientInterface $client) {
+    private function getStorage(OAuthClientInterface $client)
+    {
         $clazz = new \ReflectionClass($client);
         $prop = $clazz->getProperty('service');
         $prop->setAccessible(true);

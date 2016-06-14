@@ -12,12 +12,12 @@ use OAuth\ServiceFactory as OAuthServiceFactory;
 class ServiceFactory
 {
     /**
-     * @param string $serviceName     Service Name
-     * @param string $consumerKey     Consumer Key
-     * @param string $consumerSecret  Consumer Secret
-     * @param string $callbackUrlPath Callback URL Path
-     * @param array  $scopes          Scopes (for OAuth2)
-     * @param TokenStorageInterface $storage Token Storage
+     * @param string                $serviceName     Service Name
+     * @param string                $consumerKey     Consumer Key
+     * @param string                $consumerSecret  Consumer Secret
+     * @param string                $callbackUrlPath Callback URL Path
+     * @param array                 $scopes          Scopes (for OAuth2)
+     * @param TokenStorageInterface $storage         Token Storage
      *
      * @return ServiceInterface
      */
