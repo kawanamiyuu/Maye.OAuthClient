@@ -6,8 +6,6 @@ interface OAuthClientInterface
 {
     /**
      * Redirect to authorize
-     *
-     * @return void
      */
     public function authorize();
 

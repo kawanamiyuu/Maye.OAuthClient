@@ -66,7 +66,8 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return OAuth1ClientInterface
      */
-    private function getClient(TokenStorageInterface $storage = null) {
+    private function getClient(TokenStorageInterface $storage = null)
+    {
         return new OAuth1TestClient(
             'twitter',
             'ConsumerKey',
@@ -82,7 +83,8 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return TokenStorageInterface
      */
-    private function getStorage(OAuthClientInterface $client) {
+    private function getStorage(OAuthClientInterface $client)
+    {
         $clazz = new \ReflectionClass($client);
         $prop = $clazz->getProperty('service');
         $prop->setAccessible(true);

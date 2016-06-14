@@ -19,13 +19,13 @@ class OAuth2Client extends AbstractOAuthClient implements OAuth2ClientInterface
     private $extraParams = [];
 
     /**
-     * @param string $serviceName     Service Name
-     * @param string $consumerKey     Consumer Key
-     * @param string $consumerSecret  Consumer Secret
-     * @param string $callbackUrlPath Callback URL Path
-     * @param array  $scopes          Scopes
-     * @param array  $extraParams     Extra Parameters to Authorize
-     * @param TokenStorageInterface $storage Token Storage
+     * @param string                $serviceName     Service Name
+     * @param string                $consumerKey     Consumer Key
+     * @param string                $consumerSecret  Consumer Secret
+     * @param string                $callbackUrlPath Callback URL Path
+     * @param array                 $scopes          Scopes
+     * @param array                 $extraParams     Extra Parameters to Authorize
+     * @param TokenStorageInterface $storage         Token Storage
      */
     public function __construct($serviceName, $consumerKey, $consumerSecret, $callbackUrlPath, array $scopes = [], array $extraParams = [], TokenStorageInterface $storage = null)
     {
