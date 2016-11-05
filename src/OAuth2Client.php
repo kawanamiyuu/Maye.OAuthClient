@@ -36,6 +36,14 @@ class OAuth2Client extends AbstractOAuthClient implements OAuth2ClientInterface
     /**
      * {@inheritdoc}
      */
+    public function getAuthorizationUrl()
+    {
+        return $this->service->getAuthorizationUri($this->extraParams);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function requestAccessToken($code, $state = null)
     {
         return $this->service->requestAccessToken($code, $state);
@@ -67,13 +75,5 @@ class OAuth2Client extends AbstractOAuthClient implements OAuth2ClientInterface
         $storage->storeAccessToken($this->getServiceName(), $token);
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getAuthorizationUrl()
-    {
-        return $this->service->getAuthorizationUri($this->extraParams);
     }
 }

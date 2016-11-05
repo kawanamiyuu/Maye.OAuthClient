@@ -36,6 +36,19 @@ class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
     /**
      * {@inheritdoc}
      */
+    public function getAuthorizationUrl()
+    {
+        $requestToken = $this->getRequestToken();
+
+        $params = ['oauth_token' => $requestToken];
+        $params += $this->extraParams;
+
+        return $this->service->getAuthorizationUri($params);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function requestAccessToken($token, $verifier)
     {
         return $this->service->requestAccessToken($token, $verifier, null);
@@ -57,19 +70,6 @@ class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
         $storage->storeAccessToken($this->getServiceName(), $token);
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getAuthorizationUrl()
-    {
-        $requestToken = $this->getRequestToken();
-
-        $params = ['oauth_token' => $requestToken];
-        $params += $this->extraParams;
-
-        return $this->service->getAuthorizationUri($params);
     }
 
     /**
