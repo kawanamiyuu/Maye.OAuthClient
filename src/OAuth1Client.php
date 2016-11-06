@@ -43,7 +43,7 @@ class OAuth1Client extends AbstractOAuthClient implements OAuth1ClientInterface
         $params = ['oauth_token' => $requestToken];
         $params += $this->extraParams;
 
-        return $this->service->getAuthorizationUri($params);
+        return (string) $this->service->getAuthorizationUri($params);
     }
 
     /**

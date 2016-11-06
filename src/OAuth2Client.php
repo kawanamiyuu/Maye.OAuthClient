@@ -38,7 +38,7 @@ class OAuth2Client extends AbstractOAuthClient implements OAuth2ClientInterface
      */
     public function getAuthorizationUrl()
     {
-        return $this->service->getAuthorizationUri($this->extraParams);
+        return (string) $this->service->getAuthorizationUri($this->extraParams);
     }
 
     /**
