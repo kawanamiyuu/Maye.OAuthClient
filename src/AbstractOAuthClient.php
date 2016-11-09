@@ -13,11 +13,9 @@ abstract class AbstractOAuthClient implements OAuthClientInterface
     protected $service;
 
     /**
-     * Get an Authorization URL
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    abstract protected function getAuthorizationUrl();
+    abstract public function getAuthorizationUrl();
 
     /**
      * {@inheritdoc}

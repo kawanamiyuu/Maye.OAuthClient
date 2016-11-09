@@ -20,6 +20,21 @@ class OAuth1ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Session::class, $storage);
     }
 
+    public function testGetAuthorizationUrl()
+    {
+        $client = $this->getClient(new Memory);
+        $url = $client->getAuthorizationUrl();
+
+        parse_str(parse_url(trim($url))['query'], $queries);
+
+        $this->assertStringStartsWith('https://api.twitter.com/oauth/authenticate?', $url);
+
+        $this->assertEquals([
+            'oauth_token' => 'RequestToken',
+            'force_login' => 'true'
+        ], $queries);
+    }
+
     public function testAuthorize()
     {
         $client = $this->getClient(new Memory);

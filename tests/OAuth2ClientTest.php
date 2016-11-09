@@ -21,6 +21,24 @@ class OAuth2ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Session::class, $storage);
     }
 
+    public function testGetAuthorizationUrl()
+    {
+        $client = $this->getClient(new Memory);
+        $url = $client->getAuthorizationUrl();
+
+        parse_str(parse_url(trim($url))['query'], $queries);
+
+        $this->assertStringStartsWith('https://www.facebook.com/dialog/oauth?', $url);
+
+        $this->assertEquals('ConsumerKey', $queries['client_id']);
+        $this->assertEquals('http://example.com/oauth/facebook/callback', $queries['redirect_uri']);
+        $this->assertEquals('read_stream,publish_actions', $queries['scope']);
+        $this->assertEquals('reauthenticate', $queries['auth_type']);
+        $this->assertEquals('web_server', $queries['type']);
+        $this->assertEquals('code', $queries['response_type']);
+        $this->assertNotEmpty($queries['state']);
+    }
+
     public function testAuthorize()
     {
         $client = $this->getClient(new Memory);

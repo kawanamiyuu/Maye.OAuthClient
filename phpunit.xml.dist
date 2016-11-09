@@ -1,8 +1,4 @@
-<phpunit bootstrap="tests/bootstrap.php"
-         strict="true"
-         verbose="true"
-         colors="true"
-         stopOnFailure="false">
+<phpunit bootstrap="tests/bootstrap.php">
 
     <testsuites>
         <testsuite>

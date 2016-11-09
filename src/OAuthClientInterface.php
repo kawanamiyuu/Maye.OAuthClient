@@ -5,6 +5,13 @@ namespace Maye\OAuthClient;
 interface OAuthClientInterface
 {
     /**
+     * Get an Authorization URL
+     *
+     * @return string
+     */
+    public function getAuthorizationUrl();
+
+    /**
      * Redirect to authorize
      */
     public function authorize();
